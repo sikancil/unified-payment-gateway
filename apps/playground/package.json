@@ -1,0 +1,12 @@
+{
+  "name": "@indopay/playground",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "node src/index.js",
+    "build": "echo 'building playground...'",
+    "test": "echo 'testing playground...'"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
