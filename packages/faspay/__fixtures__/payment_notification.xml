@@ -1,0 +1,15 @@
+<faspay>
+    <request>Payment Notification</request>
+    <trx_id>TRX-123456789</trx_id>
+    <merchant_id>300011</merchant_id>
+    <merchant>IndoPay Demo</merchant>
+    <bill_no>ORDER-101</bill_no>
+    <payment_reff>REF-987654</payment_reff>
+    <payment_date>2023-10-25 12:05:00</payment_date>
+    <payment_status_code>2</payment_status_code>
+    <payment_status_desc>Payment Success</payment_status_desc>
+    <bill_total>10000</bill_total>
+    <payment_total>10000</payment_total>
+    <payment_channel_uid>402</payment_channel_uid>
+    <signature>generated_signature_hash</signature>
+</faspay>
