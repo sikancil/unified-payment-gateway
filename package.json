@@ -2,7 +2,7 @@
   "name": "indopay-monorepo",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "pnpm@10.2.0",
+  "packageManager": "pnpm@9.0.0",
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
@@ -10,6 +10,7 @@
     "test": "turbo run test"
   },
   "devDependencies": {
-    "turbo": "latest"
+    "turbo": "latest",
+    "typescript": "^5.4.0"
   }
 }
