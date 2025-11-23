@@ -1,0 +1,18 @@
+{
+  "Status": 200,
+  "Success": true,
+  "Message": "Success",
+  "Data": {
+    "SessionID": "SID-123456789",
+    "TransactionID": "TRX-123456789",
+    "ReferenceId": "ORDER-101",
+    "Via": "va",
+    "Channel": "bca",
+    "PaymentNo": "1234567890",
+    "PaymentName": "BCA Virtual Account",
+    "Total": 10000,
+    "Fee": 0,
+    "Expired": "2023-10-26 12:00:00",
+    "Url": "https://my.ipaymu.com/payment/SID-123456789"
+  }
+}
