@@ -1,0 +1,18 @@
+{
+  "header": {
+    "msgId": "202310250000001",
+    "orgId": "ORG-123",
+    "timeStamp": "2023-10-25T12:00:00.000Z",
+    "ctry": "ID"
+  },
+  "txnInfo": {
+    "txnType": "ACT",
+    "customerReference": "ORDER-101",
+    "txnRefId": "TRX-123456789",
+    "txnDate": "2023-10-25",
+    "txnAmount": "10000",
+    "txnCcy": "IDR",
+    "txnStatus": "ACTC",
+    "txnStatusDescription": "Transaction Successful"
+  }
+}

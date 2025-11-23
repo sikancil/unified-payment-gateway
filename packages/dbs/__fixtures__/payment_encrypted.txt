@@ -1,0 +1,4 @@
+-----BEGIN PGP MESSAGE-----
+
+wcDMA47n71R+aY7mAQwAs5y1d... (this is just a placeholder, real encryption happens in tests)
+-----END PGP MESSAGE-----
