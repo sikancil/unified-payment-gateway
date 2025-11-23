@@ -4,8 +4,7 @@ export interface IndopayModuleOptions {
   defaultProvider?: string;
   providers: {
     name: string;
-    useFactory: (...args: any[]) => IPaymentGateway;
-    inject?: any[];
+    gateway: IPaymentGateway;
   }[];
 }
 

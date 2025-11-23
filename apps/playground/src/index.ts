@@ -1,5 +1,5 @@
 import { MidtransGateway } from '@indopay/midtrans';
-import { CreatePaymentInput, PaymentMethodType, PaymentStatus } from '@indopay/core';
+import { CreatePaymentInput, PaymentMethodType, PaymentStatus, PaymentTransaction } from '@indopay/core';
 import { MemoryTransactionRepository } from './infra/memory-repo';
 import { ConsoleLogger } from './infra/console-logger';
 
@@ -11,26 +11,10 @@ async function runSimulation() {
   const repo = new MemoryTransactionRepository();
 
   // Initialize Gateway (Midtrans Sandbox)
-  // Use a dummy server key for simulation (it will fail network call if not mocked,
-  // but we might mock it or just expect failure/handling).
-  // If we want "live" simulation without real creds, we can catch the error
-  // or use nock here too?
-  // Instruction says "run a live simulation".
-  // Usually implies seeing the flow.
-  // I will proceed with dummy creds and catch the error if network fails,
-  // OR I can mock it locally for the playground to show "success" flow.
-  // Let's assume we want to see the logic flow.
-  // I will add Nock to playground for demonstration purposes so we see a "Success".
-
   const serverKey = 'SB-Mid-server-DUMMY_KEY';
   const gateway = new MidtransGateway(serverKey, false);
 
   // Mocking for Playground demonstration
-  // We need nock here if we want to see success without real API keys.
-  // But playground usually isn't a test env.
-  // Let's check if I can add nock to playground devDependencies or just run it and expect 401.
-  // "run a live simulation" - implies seeing it work.
-  // I'll try to import nock if available (it is in root node_modules).
   try {
       const nock = require('nock');
       nock('https://api.sandbox.midtrans.com/v2')
@@ -78,13 +62,15 @@ async function runSimulation() {
     });
 
     // 4. Save to Repo
-    await repo.create({
-        referenceId: result.referenceId,
-        transactionId: result.id,
-        status: result.status,
-        amount: result.amount,
-        raw: result.rawResponse
-    });
+    // The repository expects a PaymentTransaction object.
+    // 'result' IS a PaymentTransaction, so we should pass it directly.
+    // But if we want to construct it manually or modify it, we must adhere to the interface.
+    // The previous code was trying to create an object literal that didn't match PaymentTransaction perfectly
+    // (it used 'raw' instead of 'rawResponse', and 'transactionId' instead of 'id').
+    // However, `result` from createPayment IS a PaymentTransaction.
+    // So we can just pass `result`.
+
+    await repo.create(result);
 
     // 5. Fetch back
     const saved = await repo.findByReference(result.referenceId);
