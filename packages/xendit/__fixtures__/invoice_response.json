@@ -1,0 +1,32 @@
+{
+  "id": "671fb45f-4029-4d69-8086-508b98217730",
+  "external_id": "ORDER-101",
+  "user_id": "628c68a356247c4e5178659d",
+  "status": "PENDING",
+  "merchant_name": "IndoPay Demo",
+  "merchant_profile_picture_url": "https://xnd-merchant-logos.s3.amazonaws.com/business/profile/default.png",
+  "amount": 10000,
+  "payer_email": "jules@indopay.com",
+  "description": "Payment for ORDER-101",
+  "invoice_url": "https://checkout.xendit.co/web/671fb45f-4029-4d69-8086-508b98217730",
+  "expiry_date": "2023-10-26T12:00:00.000Z",
+  "available_banks": [
+    {
+      "bank_code": "MANDIRI",
+      "collection_type": "POOL",
+      "transfer_amount": 10000,
+      "bank_branch": "Virtual Account",
+      "account_holder_name": "MANDIRI"
+    }
+  ],
+  "available_retail_outlets": [],
+  "available_ewallets": [],
+  "available_qr_codes": [],
+  "available_direct_debits": [],
+  "available_paylaters": [],
+  "should_exclude_credit_card": false,
+  "should_send_email": false,
+  "created": "2023-10-25T12:00:00.000Z",
+  "updated": "2023-10-25T12:00:00.000Z",
+  "currency": "IDR"
+}
