@@ -1,10 +1,13 @@
 {
   "name": "@indopay/core",
   "version": "0.0.0",
-  "main": "./index.js",
-  "types": "./index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "build": "echo 'building core...'",
+    "build": "tsc",
     "test": "echo 'testing core...'"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
   }
 }
