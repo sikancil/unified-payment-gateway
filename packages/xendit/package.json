@@ -1,0 +1,26 @@
+{
+  "name": "@indopay/xendit",
+  "version": "0.0.0",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@indopay/core": "workspace:*",
+    "@indopay/contracts": "workspace:*",
+    "axios": "^1.6.2",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3",
+    "jest": "^29.7.0",
+    "@types/jest": "^29.5.11",
+    "ts-jest": "^29.1.1",
+    "nock": "^13.4.0",
+    "@types/node": "^20.10.5"
+  }
+}
