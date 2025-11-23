@@ -1,0 +1,14 @@
+{
+  "order": {
+    "invoice_number": "ORDER-101",
+    "amount": 10000
+  },
+  "virtual_account_info": {
+    "virtual_account_number": "88880000001",
+    "how_to_pay_page": "https://doku.com/how-to-pay",
+    "how_to_pay_api": "https://api.doku.com/how-to-pay"
+  },
+  "payment": {
+    "payment_due_date": "2023-10-26T12:00:00Z"
+  }
+}
