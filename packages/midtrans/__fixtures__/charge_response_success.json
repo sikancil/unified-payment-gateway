@@ -1,0 +1,14 @@
+{
+  "status_code": "201",
+  "status_message": "Success, Credit Card transaction is successful",
+  "transaction_id": "231c79c5-e39e-4993-86da-848f1d5fde25",
+  "order_id": "ORDER-101",
+  "gross_amount": "10000.00",
+  "currency": "IDR",
+  "payment_type": "credit_card",
+  "transaction_time": "2023-10-25 12:00:00",
+  "transaction_status": "capture",
+  "fraud_status": "accept",
+  "masked_card": "481111-1114",
+  "bank": "bni"
+}

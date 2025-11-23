@@ -1,0 +1,14 @@
+{
+  "transaction_time": "2023-10-25 12:00:00",
+  "transaction_status": "settlement",
+  "transaction_id": "231c79c5-e39e-4993-86da-848f1d5fde25",
+  "status_message": "midtrans payment notification",
+  "status_code": "200",
+  "signature_key": "generated_signature_key_here",
+  "payment_type": "credit_card",
+  "order_id": "ORDER-101",
+  "merchant_id": "G123456789",
+  "gross_amount": "10000.00",
+  "fraud_status": "accept",
+  "currency": "IDR"
+}
