@@ -96,6 +96,43 @@ importers:
         specifier: ^5.3.3
         version: 5.9.3
 
+  packages/doku:
+    dependencies:
+      '@indopay/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+      '@indopay/core':
+        specifier: workspace:*
+        version: link:../core
+      axios:
+        specifier: ^1.6.2
+        version: 1.13.2
+      zod:
+        specifier: ^3.24.2
+        version: 3.25.76
+    devDependencies:
+      '@types/jest':
+        specifier: ^29.5.11
+        version: 29.5.14
+      '@types/node':
+        specifier: ^20.10.5
+        version: 20.19.25
+      jest:
+        specifier: ^29.7.0
+        version: 29.7.0(@types/node@20.19.25)(ts-node@10.9.2(@types/node@20.19.25)(typescript@5.9.3))
+      nock:
+        specifier: ^13.4.0
+        version: 13.5.6
+      ts-jest:
+        specifier: ^29.1.1
+        version: 29.4.5(@babel/core@7.28.5)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.5))(esbuild@0.27.0)(jest-util@29.7.0)(jest@29.7.0(@types/node@20.19.25)(ts-node@10.9.2(@types/node@20.19.25)(typescript@5.9.3)))(typescript@5.9.3)
+      tsup:
+        specifier: ^8.0.1
+        version: 8.5.1(typescript@5.9.3)
+      typescript:
+        specifier: ^5.3.3
+        version: 5.9.3
+
   packages/faspay:
     dependencies:
       '@indopay/contracts':
