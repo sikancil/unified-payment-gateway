@@ -1,39 +1,51 @@
-# Agent Guidelines: IndoPay Unified Payment Standard
+# AGENT GUIDELINES: IndoPay Unified Payment Standard
 
-These guidelines are derived from the project's PRD and represent the core architectural principles of the `indopay-monorepo`. You (the agent) must adhere to these rules strictly when generating, refactoring, or reviewing code.
+This document is the **Law** for this repository. It merges architectural strictness with implementation precision. You must adhere to these rules without exception.
 
-## 1. Architecture: Inversion of Control (IoC)
-*   **No Direct Driver Dependencies:** The core logic and provider packages **must never** depend on specific infrastructure libraries (e.g., `typeorm`, `prisma`, `bullmq`, `winston`).
-*   **The Bridge Pattern:** All interactions with the "outside world" (Persistence, Queues, Logging) must occur through interfaces defined in `packages/contracts`.
-    *   **Persistence:** Use `ITransactionRepository` (injected).
-    *   **Async Processing:** Use `IJobQueue` (injected).
-    *   **Logging:** Use `ILogger` (injected).
-*   **Host Responsibility:** The host application (e.g., NestJS, Express) is responsible for providing the concrete implementations of these contracts.
+## 1. The Core Philosophy: Inversion of Control (IoC)
+*   **The "Bridge" Pattern:** This library is a "Headless Engine".
+    *   **Core Logic:** Resides in `packages/core` and `packages/{provider}`.
+    *   **Infrastructure:** Resides in the Host App, NOT here.
+*   **Strict Forbidden Dependencies:**
+    *   ❌ NEVER import `typeorm`, `prisma`, `mongoose`, `sequelize`, `pg`, `mysql`.
+    *   ❌ NEVER import `bull`, `bullmq`, `kafkajs`, `amqplib`.
+    *   ❌ NEVER import `winston`, `pino` (directly).
+*   **The Interface Rule:** All external side-effects (Database, Queue, Logging) MUST use the interfaces defined in `packages/contracts`.
 
-## 2. Monorepo Structure & Scope
-*   **`packages/core`:** Contains base interfaces, custom errors, and shared utilities. No provider-specific logic here.
-*   **`packages/contracts`:** Contains the definitions for the "Bridge" interfaces that the host app implements.
-*   **`packages/{provider}`:** Isolated implementations for specific providers (e.g., `midtrans`, `xendit`). Each provider should be its own workspace.
-*   **`packages/nestjs`:** A specific wrapper for NestJS integration.
+## 2. Monorepo Structure
+*   **`packages/core`**: The Brain. Base types, standard Enums (`PaymentStatus`), and `IndoPayError` classes.
+*   **`packages/contracts`**: The Bridge. Interfaces that the user MUST implement (`ITransactionRepository`, `IJobQueue`).
+*   **`packages/{provider}`**: The Limbs. Isolated implementations (e.g., `midtrans`, `dbs`).
+*   **`apps/playground`**: The Lab. An Express/Node app where we import "forbidden" libraries to test the Bridge.
 
-## 3. Strict Typing & Normalization
-*   **Standardization:** All inputs and outputs must be normalized.
-    *   Input: `CreatePaymentInput`
-    *   Output: `PaymentTransaction` with standardized enums (`PENDING`, `PAID`, `FAILED`).
+## 3. Strict Engineering Standards (The "How")
+*   **Language:** **TypeScript Only**. `strict: true`. No `.js` files allowed in packages.
+*   **No `any`:** usage of `any` is strictly forbidden. Use `unknown` + Type Guards (Zod).
+*   **Runtime Validation:** You MUST use **Zod** to validate all incoming data from Payment Providers. Never trust an API response matches its documentation blindly.
+*   **Error Handling:**
+    *   ❌ `throw new Error("Failed")`
+    *   ✅ `throw new PaymentProviderException("Insufficient funds", "DBS_001")`
+
+## 4. Test-Driven Development (TDD) Protocol
+You are required to work in this order:
+1.  **Create Fixtures:** Create `packages/{provider}/__fixtures__/{scenario}.json` (or `.xml`, `.txt`).
+2.  **Write the Test:** Write a Jest test that attempts to mock the API call and assert the output matches `PaymentTransaction`.
+3.  **Write the Code:** Implement the logic to pass the test.
+
+## 5. Security & Provider Specifics
+*   **DBS RAPID:**
+    *   REQUIRES `openpgp` for payload encryption/decryption.
+    *   Input payload is JSON -> Encrypt -> Send.
+    *   Response payload is Encrypted String -> Decrypt -> JSON.
+*   **Faspay & Doku:**
+    *   REQUIRES `fast-xml-parser`.
+    *   Must normalize XML structures into the standard JSON format.
 *   **Webhooks:**
-    *   Raw payloads must be transformed into `NormalizedWebhookEvent`.
-    *   **Signature Verification:** Every webhook adapter must verify the signature (HMAC, etc.) **before** processing or normalization.
+    *   **Verification First:** You must verify the HMAC/Signature BEFORE parsing the body.
 
-## 4. Security & Cryptography
-*   **DBS RAPID:** Implement PGP encryption/decryption using `openpgp` for this specific provider.
-*   **General:** Ensure all cryptographic operations are secure and adhere to provider specifications.
-
-## 5. Coding Standards
-*   **TypeScript:** While the initial setup might be JS, the goal is robust, typed interfaces (likely implied by "Strict Typing"). Ideally, we should move towards TS or robust JSDoc if staying in JS. *Note: PRD mentions "Base interfaces", implying Typescript or strong structural typing.*
-*   **Error Handling:** Use custom error classes defined in `packages/core`.
-
-## 6. Verification
-*   Before marking a task as complete, verify that:
-    *   No forbidden dependencies have crept into `packages/core` or provider packages.
-    *   The IoC pattern is respected.
-    *   Normalization is applied correctly.
+## 6. Verification Checklist
+Before finishing a response/task:
+1.  [ ] Did I use `Zod` to validate external data?
+2.  [ ] Did I respect the `ITransactionRepository` interface instead of writing SQL?
+3.  [ ] Is there a Jest test covering this logic?
+4.  [ ] Are all Enums normalized (e.g., `provider_status: 'SETTLEMENT'` -> `PaymentStatus.PAID`)?
