@@ -1,0 +1,32 @@
+<faspay>
+    <response>Success</response>
+    <response_code>00</response_code>
+    <response_desc>Payment created successfully</response_desc>
+    <trx_id>TRX-123456789</trx_id>
+    <merchant_id>300011</merchant_id>
+    <merchant>IndoPay Demo</merchant>
+    <bill_no>ORDER-101</bill_no>
+    <bill_items>
+        <item>
+            <product>Payment for ORDER-101</product>
+            <qty>1</qty>
+            <amount>10000</amount>
+            <payment_plan>1</payment_plan>
+            <merchant_id>300011</merchant_id>
+            <tenor>00</tenor>
+        </item>
+    </bill_items>
+    <bill_date>2023-10-25 12:00:00</bill_date>
+    <bill_expired>2023-10-26 12:00:00</bill_expired>
+    <bill_desc>Payment for ORDER-101</bill_desc>
+    <bill_currency>IDR</bill_currency>
+    <bill_gross>10000</bill_gross>
+    <bill_misc>0</bill_misc>
+    <bill_total>10000</bill_total>
+    <cust_no>CUST-001</cust_no>
+    <cust_name>Jules Agent</cust_name>
+    <payment_channel>402</payment_channel>
+    <pay_type>1</pay_type>
+    <signature>generated_signature_hash</signature>
+    <redirect_url>https://web.faspay.co.id/payment/123456789</redirect_url>
+</faspay>
