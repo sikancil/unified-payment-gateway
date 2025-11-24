@@ -7,9 +7,14 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
-    "test": "turbo run test"
+    "test": "turbo run test",
+    "test:e2e": "pnpm --filter @indopay/playground dev",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "publish": "changeset publish"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.7",
     "turbo": "latest",
     "typescript": "^5.4.0"
   }

@@ -14,5 +14,16 @@
   "devDependencies": {
     "tsup": "^8.5.1",
     "typescript": "^5.4.0"
+  },
+  "author": "IndoPay Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sikancil/unified-payment-gateway.git",
+    "directory": "packages/contracts"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
   }
 }
