@@ -9,6 +9,7 @@ export interface IndopayModuleOptions {
 }
 
 export interface IndopayModuleAsyncOptions {
+  imports?: any[];
   useFactory: (...args: any[]) => Promise<IndopayModuleOptions> | IndopayModuleOptions;
   inject?: any[];
 }

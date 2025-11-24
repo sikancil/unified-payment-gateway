@@ -23,7 +23,7 @@ export class IndopayModule {
   static forRootAsync(options: IndopayModuleAsyncOptions): DynamicModule {
     return {
       module: IndopayModule,
-      imports: [],
+      imports: options.imports || [],
       providers: [
         {
           provide: INDOPAY_OPTIONS,

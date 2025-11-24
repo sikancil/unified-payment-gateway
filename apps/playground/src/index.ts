@@ -62,14 +62,6 @@ async function runSimulation() {
     });
 
     // 4. Save to Repo
-    // The repository expects a PaymentTransaction object.
-    // 'result' IS a PaymentTransaction, so we should pass it directly.
-    // But if we want to construct it manually or modify it, we must adhere to the interface.
-    // The previous code was trying to create an object literal that didn't match PaymentTransaction perfectly
-    // (it used 'raw' instead of 'rawResponse', and 'transactionId' instead of 'id').
-    // However, `result` from createPayment IS a PaymentTransaction.
-    // So we can just pass `result`.
-
     await repo.create(result);
 
     // 5. Fetch back
@@ -79,12 +71,15 @@ async function runSimulation() {
     if (saved) {
         logger.info('3. Transaction Saved & Retrieved Successfully', { savedStatus: saved.status });
         console.log('\n✅ SIMULATION SUCCESS\n');
+        process.exit(0);
     } else {
         logger.error('Transaction not found in repo!');
+        process.exit(1);
     }
 
   } catch (error: any) {
     logger.error('Simulation Failed', error);
+    process.exit(1);
   }
 }
 
